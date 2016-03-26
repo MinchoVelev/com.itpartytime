@@ -6,4 +6,5 @@ public interface Commands {
 	String CHANGE_STATE = "change-state";
 	String PLAY_NEXT = "play-next";
 	String PLAY_PREVIOUS = "play-previous";
+	String EXIT = "exit";
 }

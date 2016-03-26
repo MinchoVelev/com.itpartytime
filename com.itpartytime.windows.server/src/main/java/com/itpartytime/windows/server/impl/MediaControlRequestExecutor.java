@@ -7,14 +7,17 @@ import java.net.Socket;
 import java.nio.charset.Charset;
 
 import com.itpartytime.windows.common.Commands;
+import com.itpartytime.windows.common.Constants;
 import com.itpartytime.windows.server.IMediaController;
 
 public class MediaControlRequestExecutor extends Thread {
-	private static final String UTF_8 = "UTF-8";
+
 	private Socket socket;
+	private boolean active;
 
 	public MediaControlRequestExecutor(Socket socket) {
 		this.socket = socket;
+		active = true;
 	}
 
 	@Override
@@ -24,35 +27,42 @@ public class MediaControlRequestExecutor extends Thread {
 
 			BufferedReader bufferedReader = new BufferedReader(
 					new InputStreamReader(socket.getInputStream(),
-							Charset.forName(UTF_8)));
+							Charset.forName(Constants.UTF_8)));
 
-			String command = bufferedReader.readLine();
-			switch (command) {
+			while (active) {
+				String command = bufferedReader.readLine();
+				System.out.println("Recieved command: " + command);
+				switch (command) {
 
-			case Commands.VOLUME_UP:
-				mediaController.increaseVolume();
-				break;
+				case Commands.VOLUME_UP:
+					mediaController.increaseVolume();
+					break;
 
-			case Commands.VOLUME_DOWN:
-				mediaController.decreaseVolume();
-				break;
+				case Commands.VOLUME_DOWN:
+					mediaController.decreaseVolume();
+					break;
 
-			case Commands.PLAY_NEXT:
-				mediaController.playNext();
-				break;
+				case Commands.PLAY_NEXT:
+					mediaController.playNext();
+					break;
 
-			case Commands.PLAY_PREVIOUS:
-				mediaController.playPrevious();
-				break;
+				case Commands.PLAY_PREVIOUS:
+					mediaController.playPrevious();
+					break;
 
-			case Commands.CHANGE_STATE:
-				mediaController.changePlayState();
-				break;
+				case Commands.CHANGE_STATE:
+					mediaController.changePlayState();
+					break;
 
-			default:
-				System.out.println("unknown command");
+				case Commands.EXIT:
+					active = false;
+					socket.close();
+					break;
+
+				default:
+					System.out.println("unknown command: " + command);
+				}
 			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
