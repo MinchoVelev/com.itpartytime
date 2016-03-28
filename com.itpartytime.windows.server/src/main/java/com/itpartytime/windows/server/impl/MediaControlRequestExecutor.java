@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.nio.charset.Charset;
 
-import com.itpartytime.windows.common.Commands;
-import com.itpartytime.windows.common.Constants;
+import com.itpartytime.common.Commands;
+import com.itpartytime.common.Constants;
 import com.itpartytime.windows.server.IMediaController;
 
 public class MediaControlRequestExecutor extends Thread {

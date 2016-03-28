@@ -39,7 +39,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.itpartytime</groupId>
-			<artifactId>com.itpartytime.windows.common</artifactId>
+			<artifactId>com.itpartytime.common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

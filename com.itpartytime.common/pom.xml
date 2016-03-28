@@ -9,5 +9,5 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>com.itpartytime.windows.common</artifactId>
+	<artifactId>com.itpartytime.common</artifactId>
 </project>

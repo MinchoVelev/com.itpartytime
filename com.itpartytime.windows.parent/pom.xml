@@ -7,7 +7,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>../com.itpartytime.windows.common</module>
+		<module>../com.itpartytime.common</module>
 		<module>../com.itpartytime.windows.server</module>
 	</modules>
 

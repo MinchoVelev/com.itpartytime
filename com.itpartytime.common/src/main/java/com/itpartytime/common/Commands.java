@@ -1,4 +1,4 @@
-package com.itpartytime.windows.common;
+package com.itpartytime.common;
 
 public interface Commands {
 	String VOLUME_UP = "volume-up";
